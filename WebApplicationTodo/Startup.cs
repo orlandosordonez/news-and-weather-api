@@ -16,6 +16,15 @@ namespace WebApplicationTodo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAll",
+                    builder =>
+                    {
+                        builder.WithOrigins("*");
+                    }
+                );
+            });
             services.AddControllers();
         }
 
@@ -28,7 +37,7 @@ namespace WebApplicationTodo
             }
 
             app.UseRouting();
-
+            app.UseCors("AllowAll");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>

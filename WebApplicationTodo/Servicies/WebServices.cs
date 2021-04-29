@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApplicationTodo.DTO;
 
 namespace WebApplicationTodo.Servicies
@@ -16,7 +14,7 @@ namespace WebApplicationTodo.Servicies
             try
             {
                 dynamic respuesta = dbApi.Get($"https://newsapi.org/v2/everything?q={cities}&apiKey=295b9318f4a74478aa1f13cedbd3356f");
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < respuesta.articles.Count; i++)
                 {
                     NewsDTO newsDTO = new NewsDTO();
                     newsDTO.author = respuesta.articles[i].author.ToString();
@@ -49,7 +47,12 @@ namespace WebApplicationTodo.Servicies
             {
                 dynamic respuesta = dbApi.Get($"https://api.openweathermap.org/data/2.5/weather?q={cities}&appid=5ffca2fa2bffcc549242d4ceefd579c5");
                 string weatherDescrip;
-                weatherDTO.observation_time = respuesta.dt.ToString();
+                double UnixTime = respuesta.dt;
+                System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+                dtDateTime = dtDateTime.AddSeconds(UnixTime).ToLocalTime();
+                string dtDateTimeString = dtDateTime.ToString("MM/dd/yyyy h:mm tt");
+                string timeWeather = dtDateTimeString;
+                weatherDTO.observation_time = timeWeather;
                 weatherDTO.temperature = respuesta.main.temp.ToString();
                 weatherDescrip = respuesta.weather[0].description.ToString();
                 weatherDes.Add(weatherDescrip);
