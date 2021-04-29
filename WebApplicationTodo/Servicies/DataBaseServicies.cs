@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApplicationTodo.Servicies
 {
-    public class SQLConnection
+    public class DataBaseServicies
     {
         private SqlConnection connection = new SqlConnection("Data Source = DESKTOP-7STF7HA; Initial Catalog = city_weather_api; Integrated Security = true");
         private DataSet ds;

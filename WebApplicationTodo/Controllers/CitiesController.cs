@@ -17,7 +17,7 @@ namespace WebApplicationTodo.Controllers
     public class CitiesController : ControllerBase
     {
         ApiPublic dbApi = new ApiPublic();
-        WebServices webService = new WebServices();
+        WebServicies webService = new WebServicies();
 
         [HttpGet("{cities}")]
         public NewsAndWeatherDTO Get(string cities)
@@ -26,7 +26,7 @@ namespace WebApplicationTodo.Controllers
             NewsAndWeatherDTO newsAndweatherDTO = new NewsAndWeatherDTO();
             List<NewsDTO> newsAll = new List<NewsDTO>();
             WeatherDTO weatherDTO = new WeatherDTO();
-            SQLConnection sql = new SQLConnection();
+            DataBaseServicies sql = new DataBaseServicies();
 
             //Se consumen las Apis publicas
             newsAll= webService.newsApi(cities);

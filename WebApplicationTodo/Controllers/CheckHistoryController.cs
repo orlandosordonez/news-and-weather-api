@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Data;
 using WebApplicationTodo.DTO;
@@ -15,7 +14,7 @@ namespace WebApplicationTodo.Controllers
         public HistoryDTO Get()
         {
             DataTable d = new DataTable();
-            SQLConnection sql = new SQLConnection();
+            DataBaseServicies sql = new DataBaseServicies();
             List<CityDTO> allCity = new List<CityDTO>();
             HistoryDTO historyDTO = new HistoryDTO();
 
